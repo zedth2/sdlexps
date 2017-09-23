@@ -12,7 +12,7 @@ int addEventHandler(Widget *wid, Uint32 key, handle_event callback){
     if(!wid->events.count(key)){
         std::vector<handle_event> handles;
         //std::map<int, std::vector<handle_event> > events;
-        wid->events[key] = std::vector<handle_event>();
+        wid->events[key] = std::vector<handle_event>(); ////It segfaults here and I'm really not sure why.
         //wid->events.insert(std::pair<Uint32, handle_event>(10, ()));
     }
     wid->events[key].push_back(callback);
