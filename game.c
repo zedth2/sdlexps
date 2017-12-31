@@ -128,10 +128,10 @@ void update(Game* self){}
 
 void handleEvents(Game* self){
     SDL_Event e;
-    SDL_PollEvent(&e);
-    callevents(e.type, &e);
-    /*std::vector<std::string> events;
-    if(){
+    //SDL_PollEvent(&e);
+    std::vector<std::string> events;
+    while(SDL_PollEvent(&e)) {
+        callevents(e.type, &e);
         switch(e.type){
             case SDL_QUIT:
                 self->m_bRunning = FALSE;
@@ -147,9 +147,8 @@ void handleEvents(Game* self){
     }
     if(events.size()){
         for(int i = 0; i < events.size(); i++){
-
         }
-    }*/
+    }
 }
 
 void callevents(Uint32 event_type, SDL_Event *e){
