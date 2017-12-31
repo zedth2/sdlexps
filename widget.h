@@ -18,7 +18,7 @@ struct _widget {
 };
 
 
-Widget* initWidget();
+int initWidget(Widget *self);
 
 int addEventHandler(Widget *wid, Uint32 key, handle_event callback);
 

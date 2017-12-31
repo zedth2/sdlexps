@@ -63,9 +63,10 @@ void addchild(Game* self, Widget* child){
 int main(int argc, char* args[]){
     gm = InitGame();
     SDLInit(gm, "TITLE", 100, 100, 640, 480, 0);
-    Widget w = InitSprite("cecil.bmp", gm)->base;
-    addchild(gm, &w);
-    addEventHandler(&w, SDL_KEYDOWN, (handle_event)KeyDown);
+    SpriteSheet *sprite = (SpriteSheet*)malloc(sizeof(SpriteSheet));
+    InitSprite(sprite, "cecil.bmp", gm);
+    addchild(gm, (Widget *)sprite);
+    addEventHandler((Widget *)sprite, SDL_KEYDOWN, (handle_event)KeyDown);
     mainloop(gm);
 
     return 0;
@@ -127,10 +128,10 @@ void update(Game* self){}
 
 void handleEvents(Game* self){
     SDL_Event e;
-    SDL_PollEvent(&e);
-    callevents(e.type, &e);
-    /*std::vector<std::string> events;
-    if(){
+    //SDL_PollEvent(&e);
+    std::vector<std::string> events;
+    while(SDL_PollEvent(&e)) {
+        callevents(e.type, &e);
         switch(e.type){
             case SDL_QUIT:
                 self->m_bRunning = FALSE;
@@ -146,9 +147,8 @@ void handleEvents(Game* self){
     }
     if(events.size()){
         for(int i = 0; i < events.size(); i++){
-
         }
-    }*/
+    }
 }
 
 void callevents(Uint32 event_type, SDL_Event *e){
