@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_keyboard.h>
 
 #include "widget.h"
 #include "sprite.h"
@@ -21,7 +22,6 @@ int InitSprite(SpriteSheet *self, const char* file, Game *mainGm){
   self->base.dstRect.h = 48;
   self->base.draw = DrawSprite;
   LoadSprite(self, mainGm);
-
   return 0;
 }
 
@@ -63,25 +63,42 @@ void MoveSprite(SpriteSheet *self, int xMove, int yMove){
 
 
 void KeyDown(Widget *self, SDL_Event *e, void *extra){
-    printf("KEY DOWN");
-    /*
+    printf("KEY DOWN SPRITE\n");
+    //printf("KEY %d %d \n", e->key.keysym, SDL_GetScancodeFromKey(e->key.keysym));
+    switch(e->key.keysym.scancode){
+      case SDL_SCANCODE_UP:
+        self->dstRect.y--;
+        break;
+      case SDL_SCANCODE_DOWN:
+        self->dstRect.y++;
+        break;
+      case SDL_SCANCODE_LEFT:
+        self->dstRect.x--;
+        break;
+      case SDL_SCANCODE_RIGHT:
+        self->dstRect.x++;
+        break;
+      default:
+        break;
+    }
+/*
     if(eve[SDL_SCANCODE_UP]){
-        self->base.dstRect.y--;
+        self->dstRect.y--;
     }
     if( eve[ SDL_SCANCODE_DOWN ] )
     {
-        self->base.dstRect.y++;
+        self->dstRect.y++;
     }
     if( eve[ SDL_SCANCODE_LEFT ] )
     {
-        self->base.dstRect.x--;
+        self->dstRect.x--;
     }
     if( eve[ SDL_SCANCODE_RIGHT ] )
     {
-        self->base.dstRect.x++;
-    }*/
+        self->dstRect.x++;
+    }
     //else
     //{
         //printf("Well
-    //}
+    //}*/
 }
