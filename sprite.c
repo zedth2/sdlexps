@@ -27,7 +27,7 @@ int InitSprite(SpriteSheet *self, const char* file, Game *mainGm){
 
 void NextSprite(SpriteSheet *self){
 
-  self->base.srcRect.x = 82 + (16 * (int)(((SDL_GetTicks() / 500) % 4)));
+  self->base.srcRect.x = self->x + (self->base.srcRect.w * (int)(((SDL_GetTicks() / 500) % 4)));
   //printf("RESULT %d + %d = %d %d\n", self->x, (self->base.srcRect.w * (int)(((SDL_GetTicks() / 500) % 4))), self->base.srcRect.x, self->base.srcRect.w);
   //self->base.srcRect.x += 1 + self->base.srcRect.w;
   //if(self->srcRect.x > 148){self->srcRect.x = self->x;}
