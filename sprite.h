@@ -12,13 +12,13 @@ struct _SpriteSheet {
 };
 typedef struct _SpriteSheet SpriteSheet;
 
-SpriteSheet* InitSprite(const char* file);
+SpriteSheet* InitSprite(const char* file, Game *mainGm);
 
 void NextSprite(SpriteSheet *self);
 
 void LoadSprite(SpriteSheet *self, Game *mainGm);
 
-void DrawSprite(SpriteSheet *self, Game *mainGm);
+int DrawSprite(Widget *self, SDL_Renderer *rend);
 
 void KeyDown(Widget *self, SDL_Event *e, void *extra);
 

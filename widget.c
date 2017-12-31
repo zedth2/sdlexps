@@ -5,6 +5,7 @@
 Widget* initWidget(){
     Widget *w = (Widget*)malloc(sizeof(Widget));
     w->events = std::map<Uint32, std::vector<handle_event> >();
+    w->draw = &widget_draw;
     return w;
 }
 
@@ -20,6 +21,6 @@ int addEventHandler(Widget *wid, Uint32 key, handle_event callback){
 
 }
 
-int draw(Widget *self, SDL_Renderer *rend){
+int widget_draw(Widget *self, SDL_Renderer *rend){
     return SDL_RenderCopyEx(rend, self->spText, &self->srcRect, &self->dstRect, 0, 0, SDL_FLIP_NONE);
 }

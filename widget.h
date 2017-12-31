@@ -14,6 +14,7 @@ struct _widget {
     SDL_Rect srcRect;
     SDL_Rect dstRect;
     std::map<Uint32, std::vector<handle_event> > events;
+    int (*draw)(Widget*, SDL_Renderer*);
 };
 
 
@@ -21,5 +22,5 @@ Widget* initWidget();
 
 int addEventHandler(Widget *wid, Uint32 key, handle_event callback);
 
-int draw(Widget *self, SDL_Renderer *rend);
+int widget_draw(Widget *self, SDL_Renderer *rend);
 #endif

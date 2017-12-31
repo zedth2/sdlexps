@@ -62,9 +62,10 @@ void addchild(Game* self, Widget* child){
 
 int main(int argc, char* args[]){
     gm = InitGame();
-    Widget *w = (Widget*) InitSprite("cecil.bmp");
-    addchild(gm, w);
-    addEventHandler(w, SDL_KEYDOWN, (handle_event)KeyDown);
+    SDLInit(gm, "TITLE", 100, 100, 640, 480, 0);
+    Widget w = InitSprite("cecil.bmp", gm)->base;
+    addchild(gm, &w);
+    addEventHandler(&w, SDL_KEYDOWN, (handle_event)KeyDown);
     mainloop(gm);
 
     return 0;
@@ -75,15 +76,16 @@ int mainloop(Game* self){
         handleEvents(gm);
         SDL_RenderClear(gm->gRen);
         for(int c = 0; c < children.size(); ++c){
-            draw(children[c], gm->gRen);
+            children[c]->draw(children[c], gm->gRen);
         }
+        SDL_RenderPresent(gm->gRen);
     }
     return 0;
 }
 
 Game* InitGame(){
   Game* self = (Game*) malloc(sizeof(Game));
-  self->m_bRunning = 0;
+  self->m_bRunning = 1;
   return self;
 }
 
