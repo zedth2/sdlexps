@@ -5,14 +5,14 @@
 #include "widget.h"
 
 struct _SpriteSheet {
-  Widget *base;
+  Widget base;
   const char* file;
   unsigned int x;
   unsigned int y;
 };
 typedef struct _SpriteSheet SpriteSheet;
 
-SpriteSheet* InitSprite(const char* file, Game *mainGm);
+int InitSprite(SpriteSheet *self, const char* file, Game *mainGm);
 
 void NextSprite(SpriteSheet *self);
 

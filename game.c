@@ -63,9 +63,10 @@ void addchild(Game* self, Widget* child){
 int main(int argc, char* args[]){
     gm = InitGame();
     SDLInit(gm, "TITLE", 100, 100, 640, 480, 0);
-    Widget w = InitSprite("cecil.bmp", gm)->base;
-    addchild(gm, &w);
-    addEventHandler(&w, SDL_KEYDOWN, (handle_event)KeyDown);
+    SpriteSheet *sprite = (SpriteSheet*)malloc(sizeof(SpriteSheet));
+    InitSprite(sprite, "cecil.bmp", gm);
+    addchild(gm, (Widget *)sprite);
+    addEventHandler((Widget *)sprite, SDL_KEYDOWN, (handle_event)KeyDown);
     mainloop(gm);
 
     return 0;

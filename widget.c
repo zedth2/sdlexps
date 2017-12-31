@@ -2,11 +2,10 @@
 #include <vector>
 #include <SDL2/SDL.h>
 #include <map>
-Widget* initWidget(){
-    Widget *w = (Widget*)malloc(sizeof(Widget));
-    w->events = std::map<Uint32, std::vector<handle_event> >();
-    w->draw = &widget_draw;
-    return w;
+int initWidget(Widget *self){
+    self->events = std::map<Uint32, std::vector<handle_event> >();
+    self->draw = &widget_draw;
+    return 0;
 }
 
 int addEventHandler(Widget *wid, Uint32 key, handle_event callback){
