@@ -65,21 +65,17 @@ void MoveSprite(SpriteSheet *self, int xMove, int yMove){
 void KeyDown(Widget *self, SDL_Event *e, void *extra){
     printf("KEY DOWN SPRITE\n");
     //printf("KEY %d %d \n", e->key.keysym, SDL_GetScancodeFromKey(e->key.keysym));
-    switch(e->key.keysym.scancode){
-      case SDL_SCANCODE_UP:
+    if(e->key.keysym.scancode == SDL_SCANCODE_UP){
         self->dstRect.y--;
-        break;
-      case SDL_SCANCODE_DOWN:
+    }
+    if(e->key.keysym.scancode == SDL_SCANCODE_DOWN){
         self->dstRect.y++;
-        break;
-      case SDL_SCANCODE_LEFT:
+    }
+    if(e->key.keysym.scancode == SDL_SCANCODE_LEFT){
         self->dstRect.x--;
-        break;
-      case SDL_SCANCODE_RIGHT:
+    }
+    if(e->key.keysym.scancode == SDL_SCANCODE_RIGHT){
         self->dstRect.x++;
-        break;
-      default:
-        break;
     }
 /*
     if(eve[SDL_SCANCODE_UP]){

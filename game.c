@@ -13,7 +13,7 @@
 #include "game.h"
 
 #include "sprite.h"
-
+#include "label.h"
 
 Game* gm = 0;
 SpriteSheet *sp = 0;
@@ -67,6 +67,9 @@ int main(int argc, char* args[]){
     InitSprite(sprite, "cecil.bmp", gm);
     addchild(gm, (Widget *)sprite);
     addEventHandler((Widget *)sprite, SDL_KEYDOWN, (handle_event)KeyDown);
+    Label *lbl = (Label*)malloc(sizeof(Label));
+    InitLabel(lbl, gm);
+    addchild(gm, (Widget*)lbl);
     mainloop(gm);
 
     return 0;

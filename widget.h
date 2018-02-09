@@ -5,6 +5,8 @@
 #include <vector>
 #include <string>
 
+#define DEFAULT_COLOR_DEPTH 32
+
 typedef struct _widget Widget;
 
 typedef int (*handle_event)(Widget *self, SDL_Event *event, void *extra);
@@ -23,4 +25,5 @@ int initWidget(Widget *self);
 int addEventHandler(Widget *wid, Uint32 key, handle_event callback);
 
 int widget_draw(Widget *self, SDL_Renderer *rend);
+
 #endif
